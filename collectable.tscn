@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7ml7jel6ii4y"]
+
+[ext_resource type="Script" path="res://Collectable.gd" id="1_oo7wn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jf2bw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4a5d"]
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="Collectable" type="Node3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+top_level = true
+script = ExtResource("1_oo7wn")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_jf2bw")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_p4a5d")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

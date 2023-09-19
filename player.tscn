@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://mnmw033bj7vm"]
+
+[ext_resource type="Script" path="res://PlayerController.gd" id="1_dbh5j"]
+[ext_resource type="AudioStream" uid="uid://djomxldcf1idw" path="res://PUZZLE_Success_Beep_Three_Note_Climb_Delay_stereo.wav" id="2_2r7sr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1gbgt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2ssmp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4fl0"]
+
+[sub_resource type="Theme" id="Theme_f6i3o"]
+Button/fonts/font = null
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+Label/font_sizes/font_size = 20
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/constants/table_h_separation = 20
+RichTextLabel/constants/table_v_separation = 20
+RichTextLabel/font_sizes/normal_font_size = 35
+
+[sub_resource type="Theme" id="Theme_iiwrm"]
+RichTextLabel/colors/default_color = Color(0, 1, 0.8, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 5
+RichTextLabel/font_sizes/bold_font_size = 80
+
+[sub_resource type="Theme" id="Theme_nmgra"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_1gbgt")
+continuous_cd = true
+script = ExtResource("1_dbh5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2ssmp")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+material_override = SubResource("StandardMaterial3D_r4fl0")
+radial_segments = 24
+rings = 12
+
+[node name="PickupCollected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2r7sr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CountDisplay" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+offset_left = 10.0
+offset_right = 197.0
+offset_bottom = 49.0
+theme = SubResource("Theme_f6i3o")
+text = "Hello there"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="WinScreen" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YouWin!" type="RichTextLabel" parent="Control/WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.5
+offset_top = -124.0
+offset_right = 217.5
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_iiwrm")
+bbcode_enabled = true
+text = "[b]YOU WIN!!![/b]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Button" type="Button" parent="Control/WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_nmgra")
+text = "Play again?"
+
+[connection signal="pressed" from="Control/WinScreen/Button" to="." method="_on_button_pressed"]

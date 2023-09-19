@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhd0fe3q2q5eu"]
+
+[ext_resource type="PackedScene" uid="uid://mnmw033bj7vm" path="res://player.tscn" id="1_goyge"]
+[ext_resource type="PackedScene" uid="uid://delnwko434052" path="res://Box.tscn" id="1_o2ebg"]
+[ext_resource type="Material" uid="uid://cwxv3m5y7xn4y" path="res://White.tres" id="2_q6odv"]
+[ext_resource type="Script" path="res://PositionChildren.gd" id="4_3h8po"]
+[ext_resource type="PackedScene" uid="uid://b7ml7jel6ii4y" path="res://collectable.tscn" id="4_4cdf6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_unlak"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="Environment" id="Environment_c1ee2"]
+background_mode = 1
+background_color = Color(0, 0.631373, 0, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.17
+
+[node name="Game" type="Node3D"]
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="Floor" parent="Geometry" instance=ExtResource("1_o2ebg")]
+transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, -0.75, 0)
+
+[node name="NorthWall" parent="Geometry" instance=ExtResource("1_o2ebg")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, -0.2, -5)
+material_override = ExtResource("2_q6odv")
+
+[node name="SouthWall" parent="Geometry" instance=ExtResource("1_o2ebg")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, -0.2, 5)
+material_override = ExtResource("2_q6odv")
+
+[node name="WestWall" parent="Geometry" instance=ExtResource("1_o2ebg")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 10.5, -5, -0.2, 0)
+material_override = ExtResource("2_q6odv")
+
+[node name="EastWall" parent="Geometry" instance=ExtResource("1_o2ebg")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 10.5, 5, -0.2, 0)
+material_override = ExtResource("2_q6odv")
+
+[node name="Roof" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24921, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Roof"]
+shape = SubResource("BoxShape3D_unlak")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.606141, 0.795357, 0, -0.795357, 0.606141, 0, 3.2915, 4.98558)
+environment = SubResource("Environment_c1ee2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.706144, 0.650777, -0.279017, 0, 0.394054, 0.919087, 0.708069, -0.649007, 0.278259, -0.418291, 2.44388, 0.215355)
+
+[node name="Player" parent="." instance=ExtResource("1_goyge")]
+
+[node name="Collectables" type="Node3D" parent="."]
+script = ExtResource("4_3h8po")
+radius = 4.0
+
+[node name="Collectable1" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable2" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable3" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable4" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable5" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable6" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable7" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable8" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable9" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable10" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable11" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[node name="Collectable12" parent="Collectables" instance=ExtResource("4_4cdf6")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.33203, 0.0024817, 3.6619)
+
+[connection signal="Collected" from="Collectables/Collectable1" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable2" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable3" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable4" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable5" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable6" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable7" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable8" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable9" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable10" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable11" to="Player" method="_on_collectable_1_collected"]
+[connection signal="Collected" from="Collectables/Collectable12" to="Player" method="_on_collectable_1_collected"]

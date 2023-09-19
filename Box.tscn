@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://delnwko434052"]
+
+[ext_resource type="Material" uid="uid://bnie4bp1840yr" path="res://Blue.tres" id="1_cs8n1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y4onq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjsjf"]
+
+[node name="CSGBox3D" type="CSGBox3D"]
+material_override = ExtResource("1_cs8n1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_y4onq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_tjsjf")
